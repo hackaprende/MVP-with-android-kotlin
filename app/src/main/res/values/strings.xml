@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVPiano</string>
+    <string name="song_name_author_format">%1$s by %2$s</string>
 </resources>
