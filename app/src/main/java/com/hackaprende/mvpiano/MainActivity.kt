@@ -2,6 +2,7 @@ package com.hackaprende.mvpiano
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hackaprende.mvpiano.databinding.ActivityMainBinding
 
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         val recycler = binding.songRecycler
         recycler.layoutManager = LinearLayoutManager(this)
         val adapter = SongAdapter()
+        adapter.setOnItemClickListener {
+            Toast.makeText(this, it.chords, Toast.LENGTH_SHORT).show()
+        }
 
         recycler.adapter = adapter
 
