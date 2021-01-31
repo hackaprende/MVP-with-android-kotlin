@@ -1,10 +1,14 @@
 package com.hackaprende.mvpiano.main
 
 import com.hackaprende.mvpiano.Song
+import kotlin.random.Random
 
 class MainApi: MainContract.Api {
 
-    override fun downloadSongs(): MutableList<Song> {
+    override fun downloadSongs(successListener: (MutableList<Song>) -> Unit,
+    errorListener: (String) -> Unit) {
+        val random = (0..10).random()
+
         val songList = mutableListOf<Song>()
 
         songList.add(Song(1, "Für Elise", "Ludwig Van Bethoven", "Do re mi fa sol"))
@@ -16,6 +20,10 @@ class MainApi: MainContract.Api {
         songList.add(Song(7, "Claire de lune", "Debussy", "Do re mi fa sol"))
         songList.add(Song(8, "Moonlight sonata", "Ludwig Van Bethoven", "Do re mi fa sol"))
 
-        return songList
+        if (random < 3) {
+            errorListener("There was an error :(")
+        } else {
+            successListener(songList)
+        }
     }
 }

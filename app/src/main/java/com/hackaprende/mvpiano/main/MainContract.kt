@@ -14,6 +14,7 @@ interface MainContract {
     }
 
     interface Api {
-        fun downloadSongs(): MutableList<Song>
+        fun downloadSongs(successListener: (MutableList<Song>) -> Unit,
+                          errorListener: (String) -> Unit)
     }
 }
