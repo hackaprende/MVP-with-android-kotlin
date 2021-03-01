@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hackaprende.mvpiano.Song
 import com.hackaprende.mvpiano.SongAdapter
+import com.hackaprende.mvpiano.Util
 import com.hackaprende.mvpiano.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -31,10 +32,14 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun showSongs(songList: MutableList<Song>) {
-        adapter.submitList(songList)
+        if (Util.isActivityAlive(this)) {
+            adapter.submitList(songList)
+        }
     }
 
     override fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        if (Util.isActivityAlive(this)) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
     }
 }
